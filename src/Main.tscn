@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Main.gd" type="Script" id=1]
-[ext_resource path="res://GridTextureRect.gd" type="Script" id=3]
-[ext_resource path="res://GridEditView.tscn" type="PackedScene" id=4]
-[ext_resource path="res://DisplayImgView.gd" type="Script" id=5]
+[ext_resource path="res://src/Main.gd" type="Script" id=1]
+[ext_resource path="res://src/GridTextureRect.gd" type="Script" id=3]
+[ext_resource path="res://src/GridEditView.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/DisplayImgView.gd" type="Script" id=5]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0

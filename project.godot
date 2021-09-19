@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "ColorItem",
 "language": "GDScript",
-"path": "res://ColorItem.gd"
+"path": "res://src/ColorItem.gd"
 } ]
 _global_script_class_icons={
 "ColorItem": ""
@@ -21,12 +21,12 @@ _global_script_class_icons={
 [application]
 
 config/name="Grid Image"
-run/main_scene="res://Main.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://src/Main.tscn"
+config/icon="res://assets/icon.png"
 
 [autoload]
 
-AppSetting="*res://AppSetting.gd"
+AppSetting="*res://src/autoload/AppSetting.gd"
 
 [importer_defaults]
 
