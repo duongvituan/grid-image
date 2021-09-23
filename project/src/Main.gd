@@ -3,9 +3,11 @@ extends Control
 onready var button_select := $VBoxContainer/Panel/MarginContainer/HBoxContainer/ButtonSelect
 onready var button_export := $VBoxContainer/Panel/MarginContainer/HBoxContainer/ButtonExport
 onready var button_grid_edit := $VBoxContainer/Panel/MarginContainer/HBoxContainer/ButtonLineEdit
+onready var button_preview := $VBoxContainer/Panel/MarginContainer/HBoxContainer/ButtonPreview
 
 onready var file_dialog := $FileDialog
 onready var display_img_view := $VBoxContainer/DisplayImgView
+onready var preview_image_view := $VBoxContainer/DisplayImgView/ViewportContainer/Viewport/PreviewImageView
 onready var grid_edit_view := $GridEditView
 onready var export_dialog := $ExportDialog
 
@@ -20,9 +22,12 @@ func _ready():
 	button_select.connect("button_down", self, "_on_tap_button_select_file")
 	button_export.connect("button_down", self, "_on_tap_button_export_file")
 	button_grid_edit.connect("button_down", self, "_on_tap_button_grid_edit")
+	button_preview.connect("toggled", self, "_on_toggled_button_preview")
 	
 	button_export.disabled = true
 	button_grid_edit.disabled = true
+	button_preview.disabled = true
+
 
 
 func _on_tap_button_select_file():
@@ -34,11 +39,19 @@ func _on_tap_button_export_file():
 func _on_tap_button_grid_edit():
 	grid_edit_view.popup()
 
+func _on_toggled_button_preview(button_pressed: bool):
+	if button_pressed:
+		display_img_view.show_preview()
+	else:
+		display_img_view.hide_preview()
+
 
 func _on_confirm_export_dialog():
 	var image: Image = display_img_view.get_export_img()
 	image.flip_y()
-	image.save_png(export_dialog.current_path)
+	var err = image.save_png(export_dialog.current_path)
+	if err != OK:
+		print(err)
 
 
 func _on_file_image_selected(path):
@@ -55,7 +68,9 @@ func handle_loading_files(path: String) -> void:
 		return
 	button_export.disabled = false
 	button_grid_edit.disabled = false
+	button_preview.disabled = false
 
 	var img_texture := ImageTexture.new()
 	img_texture.create_from_image(image, 0)
 	display_img_view.display_image(img_texture)
+

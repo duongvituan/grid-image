@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Main.gd" type="Script" id=1]
-[ext_resource path="res://src/GridTextureRect.gd" type="Script" id=3]
+[ext_resource path="res://src/FullSizeImage.gd" type="Script" id=2]
+[ext_resource path="res://src/ImageTextureRect.gd" type="Script" id=3]
 [ext_resource path="res://src/GridEditView.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/DisplayImgView.gd" type="Script" id=5]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("VBoxContainer/DisplayImgView/ScrollContainer/ViewportContainer/MainViewport")
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -50,9 +54,9 @@ resizable = true
 mode = 0
 access = 2
 filters = PoolStringArray( "*.png; PNG Images", "*.bmp; BMP Images", "*.jpeg; JPEG Images", "*.gif ; GIF Image" )
-current_dir = "/Users/tuan/Desktop/GridImage"
+current_dir = "/Users/tuan/Desktop/GridImage/project"
 current_file = "icon.png"
-current_path = "/Users/tuan/Desktop/GridImage/icon.png"
+current_path = "/Users/tuan/Desktop/GridImage/project/icon.png"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -123,6 +127,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ButtonPreview" type="Button" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer"]
+margin_left = 135.0
+margin_right = 197.0
+margin_bottom = 22.0
+toggle_mode = true
+text = "Preview"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AppVersionLabel" type="Label" parent="VBoxContainer/Panel/MarginContainer"]
 margin_left = 993.0
 margin_top = 8.0
@@ -153,6 +167,7 @@ __meta__ = {
 }
 
 [node name="ViewportContainer" type="ViewportContainer" parent="VBoxContainer/DisplayImgView/ScrollContainer"]
+mouse_filter = 2
 stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -162,7 +177,7 @@ __meta__ = {
 handle_input_locally = false
 render_target_update_mode = 3
 
-[node name="MainTexture" type="TextureRect" parent="VBoxContainer/DisplayImgView/ScrollContainer/ViewportContainer/MainViewport"]
+[node name="ImageTextureRect" type="TextureRect" parent="VBoxContainer/DisplayImgView/ScrollContainer/ViewportContainer/MainViewport"]
 margin_right = 1024.0
 margin_bottom = 550.0
 rect_min_size = Vector2( 200, 200 )
@@ -171,6 +186,37 @@ mouse_filter = 2
 expand = true
 stretch_mode = 4
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ViewportContainer" type="ViewportContainer" parent="VBoxContainer/DisplayImgView"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1.0
+mouse_filter = 2
+stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Viewport" type="Viewport" parent="VBoxContainer/DisplayImgView/ViewportContainer"]
+size = Vector2( 1024, 571 )
+handle_input_locally = false
+render_target_update_mode = 0
+
+[node name="PreviewImageView" type="TextureRect" parent="VBoxContainer/DisplayImgView/ViewportContainer/Viewport"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -36.0
+margin_bottom = -83.0
+rect_min_size = Vector2( 32, 32 )
+mouse_filter = 2
+texture = SubResource( 1 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
