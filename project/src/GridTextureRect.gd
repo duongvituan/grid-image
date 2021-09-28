@@ -1,7 +1,7 @@
 class_name GridTextureRect extends TextureRect
 
-var img: ImageTexture
-
+var img: ImageTexture setget _set_image
+var is_show_grid: bool = true setget _set_is_show_grid
 
 func _ready():
 	AppSetting.connect("update", self, "_need_to_update")
@@ -12,15 +12,21 @@ func _need_to_update():
 
 
 func _draw():
+	if not is_show_grid:
+		return
 	var cell_number = AppSetting.number_cell
 	var color = AppSetting.get_current_color()
 	var width = AppSetting.line_width
 	draw_grip(cell_number, color, width)
 
 
-func display_image(img):
-	self.img = img
-	self.texture = img
+func _set_is_show_grid(is_show: bool):
+	is_show_grid = is_show
+	_need_to_update()
+
+func _set_image(image):
+	img = image
+	texture = image
 	_need_to_update()
 
 

@@ -1,0 +1,69 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/ExportDialog.gd" type="Script" id=1]
+
+[node name="ExportDialog" type="AcceptDialog"]
+margin_right = 458.0
+margin_bottom = 99.0
+window_title = "Export"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_right = 442.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_top = 5.0
+margin_right = 36.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 30, 0 )
+text = "Path: "
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+margin_left = 40.0
+margin_right = 379.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 383.0
+margin_right = 442.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 59, 0 )
+text = "Browse"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 28.0
+margin_right = 442.0
+margin_bottom = 52.0
+rect_min_size = Vector2( 0, 24 )
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+margin_top = 5.0
+margin_right = 31.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 30, 0 )
+text = "File: "
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 35.0
+margin_right = 442.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 24 )
+size_flags_horizontal = 3

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/Main.gd" type="Script" id=1]
 [ext_resource path="res://src/FullSizeImage.gd" type="Script" id=2]
 [ext_resource path="res://src/ImageTextureRect.gd" type="Script" id=3]
 [ext_resource path="res://src/GridEditView.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/DisplayImgView.gd" type="Script" id=5]
+[ext_resource path="res://src/ExportDialog.tscn" type="PackedScene" id=6]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("VBoxContainer/DisplayImgView/ScrollContainer/ViewportContainer/MainViewport")
@@ -25,25 +26,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ExportDialog" type="FileDialog" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -250.0
-margin_top = -150.0
-margin_right = 250.0
-margin_bottom = 150.0
-resizable = true
-access = 2
-filters = PoolStringArray( "*.png; PNG Images", "*.bmp; BMP Images", "*.jpeg; JPEG Images", "*.gif ; GIF Image" )
-current_dir = "/"
-current_file = "untitled"
-current_path = "/untitled"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="FileDialog" type="FileDialog" parent="."]
 margin_left = 112.0
 margin_top = 87.0
@@ -53,7 +35,7 @@ window_title = "Open a File"
 resizable = true
 mode = 0
 access = 2
-filters = PoolStringArray( "*.png; PNG Images", "*.bmp; BMP Images", "*.jpeg; JPEG Images", "*.gif ; GIF Image" )
+filters = PoolStringArray( "*.png; PNG Images", "*.bmp; BMP Images", "*.jpeg; JPEG Images", "*.gif ; GIF Image", "*.jpg ; JPG Image" )
 current_dir = "/Users/tuan/Desktop/GridImage/project"
 current_file = "icon.png"
 current_path = "/Users/tuan/Desktop/GridImage/project/icon.png"
@@ -67,6 +49,27 @@ margin_top = 70.5778
 margin_right = 378.073
 margin_bottom = 265.578
 window_title = "grid edit"
+
+[node name="ExportDialog" parent="." instance=ExtResource( 6 )]
+margin_left = 33.3564
+margin_top = 69.9042
+margin_right = 491.356
+margin_bottom = 168.904
+
+[node name="PathDialog" type="FileDialog" parent="."]
+margin_left = 210.844
+margin_top = 204.246
+margin_right = 786.844
+margin_bottom = 521.245
+window_title = "Open a Directory"
+resizable = true
+mode = 2
+access = 2
+current_dir = "/Users/tuan/Desktop/GridImage/project"
+current_path = "/Users/tuan/Desktop/GridImage/project/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -137,6 +140,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ButtonShowGrid" type="Button" parent="VBoxContainer/Panel/MarginContainer/HBoxContainer"]
+margin_left = 201.0
+margin_right = 277.0
+margin_bottom = 22.0
+toggle_mode = true
+pressed = true
+text = "Show Grid"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="AppVersionLabel" type="Label" parent="VBoxContainer/Panel/MarginContainer"]
 margin_left = 993.0
 margin_top = 8.0
@@ -158,10 +172,6 @@ __meta__ = {
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/DisplayImgView"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.783447
-margin_top = -0.783455
-margin_right = 0.783447
-margin_bottom = -0.783447
 __meta__ = {
 "_edit_use_anchors_": false
 }
